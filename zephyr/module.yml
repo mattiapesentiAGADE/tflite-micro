@@ -1,4 +1,4 @@
 name: mytflite
 build:
-  cmake-ext: True
-  kconfig-ext: True
+  cmake: .
+  kconfig: Kconfig

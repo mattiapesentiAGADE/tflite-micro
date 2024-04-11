@@ -1,0 +1,33 @@
+config ZEPHYR_LIB_MYTFLITE_MODULE
+	bool
+
+config LIB_MYTFLITE
+    bool "Enable tflite"
+    select REQUIRES_FULL_LIBCPP
+    default y
+    help
+        This option enables the TensorFlow Lite Micro library.
+
+if CPU_CORTEX_M
+
+config TFLITE_CMSIS_NN
+	bool "TensorFlow Lite Micro with optimized CMSIS-NN kernels"
+	depends on LIB_MYTFLITE
+	select CMSIS_NN
+	select CMSIS_NN_ACTIVATION
+	select CMSIS_NN_BASICMATH
+	select CMSIS_NN_CONCATENATION
+	select CMSIS_NN_CONVOLUTION
+	select CMSIS_NN_FULLYCONNECTED
+	select CMSIS_NN_NNSUPPORT
+	select CMSIS_NN_POOLING
+	select CMSIS_NN_RESHAPE
+	select CMSIS_NN_SOFTMAX
+	select CMSIS_NN_SVD
+	select CMSIS_NN_LSTM
+	help
+	  This option adds support for CMSIS-NN optimized kernels when using TensorFlow Lite Micro.
+
+endif # CPU_CORTEX_M
+
+    
