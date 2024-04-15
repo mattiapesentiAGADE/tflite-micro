@@ -8,10 +8,10 @@ if (CONFIG_LIB_MYTFLITE)
 
     zephyr_include_directories(
     ${TENSORFLOW_LITE_MICRO_DIR}/.
-    ${TENSORFLOW_LITE_MICRO_DIR}/third_party_static/gemmlowp
-    ${TENSORFLOW_LITE_MICRO_DIR}/third_party_static/flatbuffers/include
-    ${TENSORFLOW_LITE_MICRO_DIR}/third_party_static/ruy
-    ${TENSORFLOW_LITE_MICRO_DIR}/third_party_static/kissfft
+    ${TENSORFLOW_LITE_MICRO_DIR}/third_party/gemmlowp
+    ${TENSORFLOW_LITE_MICRO_DIR}/third_party/flatbuffers/include
+    ${TENSORFLOW_LITE_MICRO_DIR}/third_party/ruy
+    ${TENSORFLOW_LITE_MICRO_DIR}/third_party/kissfft
     )
 
     if(CONFIG_TFLITE_CMSIS_NN)
