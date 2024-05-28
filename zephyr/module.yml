@@ -1,4 +1,4 @@
-name: mytflite
+name: agade-tflite
 build:
   cmake: .
   kconfig: Kconfig

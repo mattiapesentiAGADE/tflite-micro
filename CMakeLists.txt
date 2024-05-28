@@ -1,4 +1,4 @@
-if (CONFIG_LIB_MYTFLITE)
+if (CONFIG_LIB_AGADE_TFLITE)
  
     message("    (agade-libs) Parsing tflite-micro")
  

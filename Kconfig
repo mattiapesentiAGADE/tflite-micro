@@ -1,8 +1,8 @@
-config ZEPHYR_LIB_MYTFLITE_MODULE
+config ZEPHYR_LIB_AGADE_TFLITE_MODULE
 	bool
 
-config LIB_MYTFLITE
-    bool "Enable tflite"
+config LIB_AGADE_TFLITE
+    bool "Enable agade's tflite-micro library"
     select REQUIRES_FULL_LIBCPP
     default y
     help
@@ -12,7 +12,7 @@ if CPU_CORTEX_M
 
 config TFLITE_CMSIS_NN
 	bool "TensorFlow Lite Micro with optimized CMSIS-NN kernels"
-	depends on LIB_MYTFLITE
+	depends on LIB_AGADE_TFLITE
 	select CMSIS_NN
 	select CMSIS_NN_ACTIVATION
 	select CMSIS_NN_BASICMATH
