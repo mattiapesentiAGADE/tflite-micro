@@ -1,11 +1,11 @@
 if (CONFIG_LIB_MYTFLITE)
-
-    message("------------------ ciao mamma")
-
+ 
+    message("    (agade-libs) Parsing tflite-micro")
+ 
     set(TENSORFLOW_LITE_MICRO_DIR ${ZEPHYR_CURRENT_MODULE_DIR})
-
+ 
     zephyr_library()
-
+ 
     zephyr_include_directories(
     ${TENSORFLOW_LITE_MICRO_DIR}/.
     ${TENSORFLOW_LITE_MICRO_DIR}/third_party/gemmlowp
@@ -13,19 +13,19 @@ if (CONFIG_LIB_MYTFLITE)
     ${TENSORFLOW_LITE_MICRO_DIR}/third_party/ruy
     ${TENSORFLOW_LITE_MICRO_DIR}/third_party/kissfft
     )
-
+ 
     if(CONFIG_TFLITE_CMSIS_NN)
     set(CMSIS_NN_OPTIMIZED_KERNEL_DIR cmsis_nn)
     set(tflm_cmsis_nn_glue_path ${ZEPHYR_CMSIS_NN_MODULE_DIR})
-
+ 
     zephyr_library_include_directories(${tflm_cmsis_nn_glue_path})
     zephyr_library_compile_definitions(CMSIS_NN)
     endif()
-
+ 
     if (CONFIG_ARM_ETHOS_U)
     set(ETHOSU_CO_PROCESSOR ethos_u)
     endif()
-
+ 
     zephyr_library_sources(
     ${TENSORFLOW_LITE_MICRO_DIR}/python/tflite_micro/python_ops_resolver.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/signal/micro/kernels/fft_flexbuffers_generated_data.cc
@@ -49,17 +49,17 @@ if (CONFIG_LIB_MYTFLITE)
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/test_helper_custom_ops.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/recording_micro_allocator.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_time.cc
-    # ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_string.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_profiler.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_utils.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/flatbuffer_utils.cc
-    # ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_graph.cc
+    ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_interpreter_context.cc
+    ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_interpreter_graph.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/mock_micro_graph.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_interpreter.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_allocator.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_context.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_log.cc
-    # ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_op_resolver.cc
+    ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_op_resolver.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/micro_resource_variable.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/system_setup.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/arena_allocator/non_persistent_arena_buffer_allocator.cc
@@ -81,7 +81,6 @@ if (CONFIG_LIB_MYTFLITE)
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/core/api/flatbuffer_conversions.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/core/api/error_reporter.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/core/api/tensor_utils.cc
-    # ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/core/api/op_resolver.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/schema/schema_utils.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/kernels/activations.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/kernels/activations_common.cc
@@ -174,6 +173,7 @@ if (CONFIG_LIB_MYTFLITE)
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/kernels/squared_difference.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/kernels/squeeze.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/kernels/strided_slice.cc
+    ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/kernels/strided_slice_common.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/kernels/sub.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/kernels/sub_common.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/kernels/${CMSIS_NN_OPTIMIZED_KERNEL_DIR}/svdf.cc
@@ -187,5 +187,5 @@ if (CONFIG_LIB_MYTFLITE)
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/kernels/while.cc
     ${TENSORFLOW_LITE_MICRO_DIR}/tensorflow/lite/micro/kernels/zeros_like.cc
     )
-
+ 
 endif()
